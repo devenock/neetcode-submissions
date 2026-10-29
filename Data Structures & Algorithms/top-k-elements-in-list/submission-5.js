@@ -1,0 +1,18 @@
+class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} k
+     * @return {number[]}
+     */
+    topKFrequent(nums, k) {
+        let hash = {}
+        for(let num of nums){
+            hash[num] = (hash[num] || 0) + 1
+        }
+        let hashArr = Object.entries(hash).map(([num, freq]) => [
+            freq, parseInt(num)
+        ])
+        hashArr.sort((a, b) => b[0] - a[0])
+        return hashArr.slice(0, k).map((pair) => pair[1])
+    }
+}
